@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Student {
 
+    private static long id;
     private final String name;
     // тут статик поле
     private final long studentID;
@@ -18,6 +19,14 @@ public class Student {
         this.grades = new ArrayList<>();
         this.course = 1;
         this.state = State.ACTIVE;
+    }
+
+    public static Student createStudent(String name) {
+        return new Student(name);
+    }
+
+    public static Student create(String ивановИван) {
+        return null;
     }
 
     // тут статик метод
@@ -69,5 +78,12 @@ public class Student {
 
     public long getStudentID() {
         return studentID;
+    }
+
+    public void add(Student student) {
+    }
+
+    public long getStudentId() {
+        return 0;
     }
 }
