@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-
-    private static long id;
+    private static long id = 0;
     private final String name;
-    // тут статик поле
     private final long studentID;
     private int course;
     private State state;
@@ -21,69 +19,38 @@ public class Student {
         this.state = State.ACTIVE;
     }
 
-    public static Student createStudent(String name) {
+    static Student createStudent(String name) {
         return new Student(name);
     }
 
-    public static Student create(String ивановИван) {
-        return null;
-    }
+    public String getName() { return name; }
 
-    // тут статик метод
+    public int getCourse() { return course; }
+    public State getState() { return state; }
+    public long getStudentID() { return studentID; }
 
-    public String getName() {
-        return name;
-    }
+    public void setCourse(int course) { this.course = course; }
+    public void setState(State state) { this.state = state; }
 
-    public List<Integer> getGrades() {
-        return grades;
+    public void addGrade(int grade) {
+        if (grade < 2 || grade > 5) {
+            throw new IllegalArgumentException("Оценка должна быть от 2 до 5");
+        }
+        grades.add(grade);
     }
 
     public double average() {
-        if (grades.isEmpty()) {
-            return 0.0;
-        }
+        if (grades.isEmpty()) return 0.0;
         int sum = 0;
-        for (int grade : grades) {
-            sum += grade;
-        }
+        for (int grade : grades) sum += grade;
         return (double) sum / grades.size();
     }
 
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    private String report() {
-        return "Студент: " + name + System.lineSeparator()
-                + "Оценки: " + grades + System.lineSeparator()
-                + "Средний балл: " + average();
-    }
-
     public void printReport() {
-        System.out.println(report());
-    }
-
-    public int getCourse() {
-        return course;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public long getStudentID() {
-        return studentID;
-    }
-
-    public void add(Student student) {
-    }
-
-    public long getStudentId() {
-        return 0;
+        System.out.println("Студент: " + name);
+        System.out.println("Курс: " + course);
+        System.out.println("Статус: " + state);
+        System.out.println("Оценки: " + grades);
+        System.out.println("Средний балл: " + average());
     }
 }
